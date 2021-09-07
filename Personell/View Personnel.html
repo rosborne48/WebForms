@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Add Personnel</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="../styles.css" rel="stylesheet">
+  </head>
+
+
+  <body>
+
+    <!-- Title -->
+    <div class="testbox">
+        <h1>Personnel</h1>
+    </div>
+
+
+    <!-- List -->
+    <div>
+        <table id="personnel-table">
+            <!-- Headers -->
+            <tr>
+                <th>Surname</th>
+                <th>Rank</th>
+                <th>First Name</th>
+            </tr>
+
+        </table>
+    </div>
+
+
+
+    <script src="searchFunction.js"></script>
+
+    <script>
+
+      // Personnel
+      let personnel = [
+        {
+          id: 1,
+          first_name: 'John',
+          surname: 'Doe',
+          rank: 'Capt'
+        },
+        {
+          id: 2,
+          first_name: 'Jane',
+          surname: 'Appleseed',
+          rank: 'Cpl'
+        },
+      ]
+
+    // Fill table
+
+    // 1. Select the table           table
+    let table = document.getElementById("personnel-table");
+
+    // 2. Loop through pers          personnel[person]
+    personnel.forEach(person => {
+        // Row
+        let row = document.createElement('tr');
+
+        // Row Divs
+        let rank = document.createElement('td');
+        rank.textContent = person.rank
+        let first_name = document.createElement('td');
+        first_name.textContent = person.first_name
+        let surname = document.createElement('td');
+        surname.textContent = person.surname
+
+        // 3. Append pers to table       table, person
+        row.append(surname, rank, first_name)
+        table.append(row)
+    })
+
+
+    // Set event listener on submit button
+    document.getElementById('submit').addEventListener('click', event => {
+        event.preventDefault()
+        submit()
+    })
+
+
+      /**
+       * Submit the form.
+       * 
+       */
+      function submit(event)
+      {
+        // 1.  Get all input elements
+        let inputs = document.querySelectorAll('input,select,textarea')
+
+        // 2.  Create new object with names as keys, values as values
+        let fields = {}
+
+        inputs.forEach(input => {
+          fields[input.name] = input.value
+        })
+
+        // 3.  Submit object
+        console.log(fields)
+
+        // fetch.post('/this/endpoint', fields)
+      }
+
+      // Run functions at load
+      loadFields()
+
+    </script>
+
+
+  </body>
+
+
+</html>

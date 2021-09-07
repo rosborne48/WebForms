@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Add Personnel</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="../styles.css" rel="stylesheet">
+  </head>
+
+
+  <body>
+    <div class="testbox">
+      <form action="/" id="personnel_form">
+
+        <h1>Add Personnel</h1>
+
+        <!-- Personnel -->
+        <div>
+    
+    <input type="text" id="myInput" onkeyup="filterList()" placeholder="Search for names.." title="Type in a name">
+    
+    <!-- List of Items -->
+    <ul id="myUL"></ul>
+
+    <script src="searchFunction.js"></script>
+        </div>
+
+        
+        <!-- <h4>Rank<span>*</span></h4>
+        <div class="title-block">
+          <select name="rank" id="rank">
+            <option value=""></option>
+            <option value="pvt">Pvt</option>
+            <option value="cpl">Cpl</option>
+            <option value="Mcpl">Mcpl</option>
+            <option value="sgt">Sgt</option>
+          </select>
+          <input type="text" name="first_name" id="first_name" placeholder="John" />
+          <input type="text" name="last_name" id="last_name" placeholder="Doe" />
+        </div> -->
+
+        <!-- <h4>Email Address<span>*</span></h4>
+        <input type="text" name="email" id="email" placeholder="firstlast@example.com" /> -->
+
+        <!-- <h4>Duty Assigned<span>*</span></h4>
+        <input type="text" Duty Assigned="first_name" id="first_name" placeholder="Duty Assigned"/> -->
+
+        <h4>Comments / Reason For Change</h4>
+        <p class="small">Please input important information that may have been missed</small>
+          <textarea rows="5" name="other" id="other"></textarea>
+
+        <div class="btn-block">
+          <button type="submit" href="#" name="submit" id="submit">Add</button>
+        </div>
+      </form>
+    </div>
+
+
+    <script>
+
+      // Secondary Duties
+      let secondary_duties = [
+        {
+          id: 1,
+          name: 'ISSO'
+        },
+        {
+          id: 2,
+          name: 'USSO'
+        }
+      ]
+
+      // Personnel
+      let personnel = [
+        {
+          id: 1,
+          first_name: 'John',
+          surname: 'Doe',
+          rank: 'Capt'
+        },
+        {
+          id: 2,
+          first_name: 'Jane',
+          surname: 'Appleseed',
+          rank: 'Cpl'
+        },
+
+      ]
+
+
+      function loadFields()
+      {
+        // Secondary Duties
+        let sd_list = document.getElementById('secondary_duty_id')
+        
+        secondary_duties.forEach(duty => {
+
+          // 1. create an option element
+          var element = document.createElement('option');         
+          
+          // 2. assign a value,text to option
+          element.value = duty.id
+          element.textContent = duty.name
+
+          // 3. append option to select element
+          sd_list.appendChild(element)
+        })
+
+ 
+        // Personnel
+          let personnel_list = document.getElementById('personnel_id')
+
+          // Sort items
+          var personnel_sorted = personnel.sort((first_person, second_person) => {
+              var first = first_person.surname.toUpperCase();
+              var second = second_person.surname.toUpperCase();
+              if (first < second) {
+                return -1;
+              }
+              if (first > second) {
+                return 1;
+              }
+              // names must be equal
+              return 0;
+          });
+
+          personnel_sorted.forEach(person => {
+            var element = document.createElement('option');
+
+            element.value = person.id
+            element.textContent = `${person.surname}, ${person.first_name} - ${person.rank}`
+
+            personnel_list.appendChild(element)
+          })
+      }
+    
+
+      // Set event listener on submit button
+      document.getElementById('submit').addEventListener('click', event => {
+        event.preventDefault()
+        submit()
+      })
+
+
+      /**
+       * Submit the form.
+       * 
+       */
+      function submit(event)
+      {
+        // 1.  Get all input elements
+        let inputs = document.querySelectorAll('input,select,textarea')
+
+        // 2.  Create new object with names as keys, values as values
+        let fields = {}
+
+        inputs.forEach(input => {
+          fields[input.name] = input.value
+        })
+
+        // 3.  Submit object
+        console.log(fields)
+
+        // fetch.post('/this/endpoint', fields)
+      }
+
+      // Run functions at load
+      loadFields()
+
+    </script>
+
+
+  </body>
+
+
+</html>

@@ -1,0 +1,62 @@
+Personnel*
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of personnel (could tie delete function into this)
+    - update - This is a button attached to the READ table
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete   - This is a button attached to the READ table
+        - show name, rank, position of person and have a button to delete
+Positions*
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of positions (could tie delete function into this)
+    - update
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete
+        - show name and have delete button
+Secondary Duties*
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of secondary duties and their assigments (personnel or position)
+    - update
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete
+        - show name and have delete button
+Organizations
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of orgs
+    - update
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete
+        - show name and have delete button
+Directorates
+
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of directorates
+    - update
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete
+        - show name and have delete button
+Sections
+    - create
+        - all fields (except timestamps)
+    - read (not technically a form)
+        - tabular view of sections
+    - update
+        - all fields (except timestamps), fields should fill on load with current data
+    - delete
+        - show name and have delete button
+
+
+Personnel-Positions
+
+Personnel-Secondary Duties
+
+Positions-Secondary Duties
