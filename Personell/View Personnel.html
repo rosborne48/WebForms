@@ -25,6 +25,8 @@
                 <th>Surname</th>
                 <th>Rank</th>
                 <th>First Name</th>
+                <th></th>
+                <th></th>
             </tr>
 
         </table>
@@ -54,33 +56,75 @@
 
     // Fill table
 
-    // 1. Select the table           table
-    let table = document.getElementById("personnel-table");
+    function updateTable()
+    {
 
-    // 2. Loop through pers          personnel[person]
-    personnel.forEach(person => {
-        // Row
-        let row = document.createElement('tr');
+      // Select the table           table
+      let table = document.getElementById("personnel-table");
 
-        // Row Divs
-        let rank = document.createElement('td');
-        rank.textContent = person.rank
-        let first_name = document.createElement('td');
-        first_name.textContent = person.first_name
-        let surname = document.createElement('td');
-        surname.textContent = person.surname
-
-        // 3. Append pers to table       table, person
-        row.append(surname, rank, first_name)
-        table.append(row)
-    })
+      // Refresh table
+      
+      // We need to select all table rows except the row of headers and delete them
 
 
-    // Set event listener on submit button
-    document.getElementById('submit').addEventListener('click', event => {
+      // Loop through pers          personnel[person]
+      personnel.forEach(person => {
+          // Row
+          let row = document.createElement('tr');
+
+          // Row Divs
+          // Rank
+          let rank = document.createElement('td');
+          rank.textContent = person.rank
+
+          // First Name
+          let first_name = document.createElement('td');
+          first_name.textContent = person.first_name
+
+          // Surname
+          let surname = document.createElement('td');
+          surname.textContent = person.surname 
+
+          // Delete Button
+          let deleteElement = document.createElement('td');
+          let deleteButton = document.createElement('button');
+          
+          // Name
+          deleteButton.name = `delete-person-${person.id}`;
+          // Data Prop
+          deleteButton.dataset.id = person.id
+          // Class
+          deleteButton.classList.add('delete-button')
+          // Content
+          deleteButton.textContent = 'Delete'
+          deleteElement.append(deleteButton)
+
+          // 3. Append pers to table       table, person
+          row.append(surname, rank, first_name, deleteElement)
+          table.append(row)
+      });
+    }
+
+    
+
+
+    // Event listener for DELETE buttons
+    let deleteButtons = document.querySelectorAll('.delete-button');
+    
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', event => {
         event.preventDefault()
-        submit()
+
+        console.log(event.target)
+
+        personnel = personnel.filter(person => {
+          return person.id != event.target.dataset.id
+        })
+
+        console.log(personnel);
+      })
     })
+    
 
 
       /**
@@ -100,13 +144,14 @@
         })
 
         // 3.  Submit object
-        console.log(fields)
+        // console.log(fields)
 
         // fetch.post('/this/endpoint', fields)
       }
 
       // Run functions at load
-      loadFields()
+      // loadFields()
+      updateTable()
 
     </script>
 

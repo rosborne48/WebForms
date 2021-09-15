@@ -3,10 +3,14 @@ Personnel*
         - all fields (except timestamps)
     - read (not technically a form)
         - tabular view of personnel (could tie delete function into this)
-    - update - This is a button attached to the READ table
+    - update 
+	- This is a button attached to the READ table
+- 	- Modify webform, this is like the add form but has an update Form
         - all fields (except timestamps), fields should fill on load with current data
-    - delete   - This is a button attached to the READ table
+    - delete   
+	- This is a button attached to the READ table
         - show name, rank, position of person and have a button to delete
+	- Once Deleted we loop through all the content and delete it. 
 Positions*
     - create
         - all fields (except timestamps)

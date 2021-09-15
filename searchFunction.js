@@ -28,7 +28,7 @@ let allItems;/* = [
   },
 ];*/
 
-console.log(allItems);
+// console.log(allItems);
 // Build list items from items array
 function generateList(items, empty=false) {
 
@@ -75,10 +75,10 @@ function filterList() {
   generateList(filteredItems, empty)
 }
 
-console.log(URL);
+// console.log(URL);
 fetch(URL)
   .then(response => response.json())
   .then(json => allItems = json.country)
-  .then(() => console.log(allItems))
+  .then(() => null/*console.log(allItems)*/)
 
 
